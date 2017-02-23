@@ -4233,7 +4233,7 @@ class DefaultApi
                 '/zone_statuses'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
