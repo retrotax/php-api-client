@@ -556,7 +556,7 @@ class DefaultApi
                 '/authentication/user_details'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -639,7 +639,6 @@ class DefaultApi
                 '\RetroTax\BranchesResponse',
                 '/branches'
             );
-
             return array($this->apiClient->getSerializer()->deserialize($response, '\RetroTax\BranchesResponse', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
