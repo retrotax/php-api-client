@@ -2068,7 +2068,7 @@ class DefaultApi
      * @return \RetroTax\EmployeesResponse
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function employeesGet($missing_documents = null, $suppl_program_status = null, $location_id = null, $status = null, $search = null, $per_page = null, $zone_status = null, $x_auth_token = null, $application_status = null, $to_date = null, $x_auth_iv = null, $page = null, $from_date = null)
+    public function employeesGet($x_auth_token = null, $missing_documents = null, $suppl_program_status = null, $location_id = null, $status = null, $search = null, $per_page = null, $zone_status = null, $application_status = null, $to_date = null, $x_auth_iv = null, $page = null, $from_date = null)
     {
         list($response) = $this->employeesGetWithHttpInfo($x_auth_token, $missing_documents, $suppl_program_status, $location_id, $status, $search, $per_page, $zone_status, $application_status, $to_date, $x_auth_iv, $page, $from_date);
         return $response;
