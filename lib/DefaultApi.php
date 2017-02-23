@@ -2095,7 +2095,7 @@ class DefaultApi
      * @return Array of \RetroTax\EmployeesResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function employeesGetWithHttpInfo($missing_documents = null, $suppl_program_status = null, $location_id = null, $status = null, $search = null, $per_page = null, $zone_status = null, $x_auth_token = null, $application_status = null, $to_date = null, $x_auth_iv = null, $page = null, $from_date = null)
+    public function employeesGetWithHttpInfo($x_auth_token = null, $missing_documents = null, $suppl_program_status = null, $location_id = null, $status = null, $search = null, $per_page = null, $zone_status = null, $application_status = null, $to_date = null, $x_auth_iv = null, $page = null, $from_date = null)
     {
         // parse inputs
         $resourcePath = "/employees";
