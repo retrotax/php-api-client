@@ -2095,7 +2095,7 @@ class DefaultApi
      * @return Array of \RetroTax\EmployeesResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function employeesGetWithHttpInfo($x_auth_token = null, $missing_documents = null, $suppl_program_status = null, $location_id = null, $status = null, $search = null, $per_page = null, $zone_status = null, $application_status = null, $to_date = null, $x_auth_iv = null, $page = null, $from_date = null)
+    public function employeesGetWithHttpInfo($missing_documents = null, $suppl_program_status = null, $location_id = null, $status = null, $search = null, $per_page = null, $zone_status = null, $x_auth_token = null, $application_status = null, $to_date = null, $x_auth_iv = null, $page = null, $from_date = null)
     {
         // parse inputs
         $resourcePath = "/employees";
@@ -3844,9 +3844,9 @@ class DefaultApi
      * @return void
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function usersChangePasswordPut($x_auth_token = null, $x_auth_iv = null)
+    public function usersChangePasswordPut($x_auth_token = null, $chnage_password = null)
     {
-        list($response) = $this->usersChangePasswordPutWithHttpInfo($x_auth_token, $x_auth_iv);
+        list($response) = $this->usersChangePasswordPutWithHttpInfo($x_auth_token, $chnage_password);
         return $response;
     }
 
@@ -3860,11 +3860,11 @@ class DefaultApi
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function usersChangePasswordPutWithHttpInfo($x_auth_token = null, $x_auth_iv = null)
+    public function usersChangePasswordPutWithHttpInfo($x_auth_token = null, $chnage_password = null)
     {
         // parse inputs
         $resourcePath = "/users/change_password";
-        $httpBody = '';
+        $httpBody = $chnage_password;
         $queryParams = array();
         $headerParams = array();
         $formParams = array();
@@ -3877,10 +3877,6 @@ class DefaultApi
         // header params
         if ($x_auth_token !== null) {
             $headerParams['X-AUTH-TOKEN'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_token);
-        }
-        // header params
-        if ($x_auth_iv !== null) {
-            $headerParams['X-AUTH-IV'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_iv);
         }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
@@ -3903,8 +3899,7 @@ class DefaultApi
                 null,
                 '/users/change_password'
             );
-
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -3987,7 +3982,7 @@ class DefaultApi
                 '/users/forgot_password'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -4070,7 +4065,7 @@ class DefaultApi
                 '/users/forgot_username'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -4089,9 +4084,9 @@ class DefaultApi
      * @return void
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function usersPut($x_auth_token = null, $x_auth_iv = null)
+    public function usersPut($x_auth_token = null, $user_update = null)
     {
-        list($response) = $this->usersPutWithHttpInfo($x_auth_token, $x_auth_iv);
+        list($response) = $this->usersPutWithHttpInfo($x_auth_token, $user_update);
         return $response;
     }
 
@@ -4105,11 +4100,11 @@ class DefaultApi
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function usersPutWithHttpInfo($x_auth_token = null, $x_auth_iv = null)
+    public function usersPutWithHttpInfo($x_auth_token = null, $user_update = null)
     {
         // parse inputs
         $resourcePath = "/users";
-        $httpBody = '';
+        $httpBody = $user_update;
         $queryParams = array();
         $headerParams = array();
         $formParams = array();
@@ -4123,10 +4118,7 @@ class DefaultApi
         if ($x_auth_token !== null) {
             $headerParams['X-AUTH-TOKEN'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_token);
         }
-        // header params
-        if ($x_auth_iv !== null) {
-            $headerParams['X-AUTH-IV'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_iv);
-        }
+
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
@@ -4149,7 +4141,7 @@ class DefaultApi
                 '/users'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
