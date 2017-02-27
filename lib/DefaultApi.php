@@ -373,7 +373,7 @@ class DefaultApi
                 '/authentication'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -556,7 +556,7 @@ class DefaultApi
                 '/authentication/user_details'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -639,7 +639,6 @@ class DefaultApi
                 '\RetroTax\BranchesResponse',
                 '/branches'
             );
-
             return array($this->apiClient->getSerializer()->deserialize($response, '\RetroTax\BranchesResponse', $httpHeader), $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1957,9 +1956,9 @@ class DefaultApi
      * @return \RetroTax\EmployeeResponse
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function employeesEmployeeIdPut($employee_id, $x_auth_token = null, $x_auth_iv = null)
+    public function employeesEmployeeIdPut($employee_id, $x_auth_token = null, $employee_body=null, $x_auth_iv = null)
     {
-        list($response) = $this->employeesEmployeeIdPutWithHttpInfo($employee_id, $x_auth_token, $x_auth_iv);
+        list($response) = $this->employeesEmployeeIdPutWithHttpInfo($employee_id, $x_auth_token, $employee_body, $x_auth_iv);
         return $response;
     }
 
@@ -1974,7 +1973,7 @@ class DefaultApi
      * @return Array of \RetroTax\EmployeeResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function employeesEmployeeIdPutWithHttpInfo($employee_id, $x_auth_token = null, $x_auth_iv = null)
+    public function employeesEmployeeIdPutWithHttpInfo($employee_id, $x_auth_token = null,$employee_body = null, $x_auth_iv = null)
     {
         // verify the required parameter 'employee_id' is set
         if ($employee_id === null) {
@@ -1982,7 +1981,7 @@ class DefaultApi
         }
         // parse inputs
         $resourcePath = "/employees/{employee_id}";
-        $httpBody = '';
+        $httpBody = $employee_body;
         $queryParams = array();
         $headerParams = array();
         $formParams = array();
@@ -2069,9 +2068,9 @@ class DefaultApi
      * @return \RetroTax\EmployeesResponse
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function employeesGet($missing_documents = null, $suppl_program_status = null, $location_id = null, $status = null, $search = null, $per_page = null, $zone_status = null, $x_auth_token = null, $application_status = null, $to_date = null, $x_auth_iv = null, $page = null, $from_date = null)
+    public function employeesGet($x_auth_token = null, $missing_documents = null, $suppl_program_status = null, $location_id = null, $status = null, $search = null, $per_page = null, $zone_status = null, $application_status = null, $to_date = null, $x_auth_iv = null, $page = null, $from_date = null)
     {
-        list($response) = $this->employeesGetWithHttpInfo($missing_documents, $suppl_program_status, $location_id, $status, $search, $per_page, $zone_status, $x_auth_token, $application_status, $to_date, $x_auth_iv, $page, $from_date);
+        list($response) = $this->employeesGetWithHttpInfo($x_auth_token, $missing_documents, $suppl_program_status, $location_id, $status, $search, $per_page, $zone_status, $application_status, $to_date, $x_auth_iv, $page, $from_date);
         return $response;
     }
 
@@ -2096,7 +2095,7 @@ class DefaultApi
      * @return Array of \RetroTax\EmployeesResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function employeesGetWithHttpInfo($missing_documents = null, $suppl_program_status = null, $location_id = null, $status = null, $search = null, $per_page = null, $zone_status = null, $x_auth_token = null, $application_status = null, $to_date = null, $x_auth_iv = null, $page = null, $from_date = null)
+    public function employeesGetWithHttpInfo($x_auth_token = null, $missing_documents = null, $suppl_program_status = null, $location_id = null, $status = null, $search = null, $per_page = null, $zone_status = null, $application_status = null, $to_date = null, $x_auth_iv = null, $page = null, $from_date = null)
     {
         // parse inputs
         $resourcePath = "/employees";
@@ -3348,7 +3347,7 @@ class DefaultApi
                 '/supplementary_program_statuses'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -3446,7 +3445,7 @@ class DefaultApi
                 '/supplementary_program_statuses/{status_code}'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -3845,9 +3844,9 @@ class DefaultApi
      * @return void
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function usersChangePasswordPut($x_auth_token = null, $x_auth_iv = null)
+    public function usersChangePasswordPut($x_auth_token = null, $chnage_password = null)
     {
-        list($response) = $this->usersChangePasswordPutWithHttpInfo($x_auth_token, $x_auth_iv);
+        list($response) = $this->usersChangePasswordPutWithHttpInfo($x_auth_token, $chnage_password);
         return $response;
     }
 
@@ -3861,11 +3860,11 @@ class DefaultApi
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function usersChangePasswordPutWithHttpInfo($x_auth_token = null, $x_auth_iv = null)
+    public function usersChangePasswordPutWithHttpInfo($x_auth_token = null, $chnage_password = null)
     {
         // parse inputs
         $resourcePath = "/users/change_password";
-        $httpBody = '';
+        $httpBody = $chnage_password;
         $queryParams = array();
         $headerParams = array();
         $formParams = array();
@@ -3878,10 +3877,6 @@ class DefaultApi
         // header params
         if ($x_auth_token !== null) {
             $headerParams['X-AUTH-TOKEN'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_token);
-        }
-        // header params
-        if ($x_auth_iv !== null) {
-            $headerParams['X-AUTH-IV'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_iv);
         }
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
@@ -3904,8 +3899,7 @@ class DefaultApi
                 null,
                 '/users/change_password'
             );
-
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -3988,7 +3982,7 @@ class DefaultApi
                 '/users/forgot_password'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -4071,7 +4065,7 @@ class DefaultApi
                 '/users/forgot_username'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -4090,9 +4084,9 @@ class DefaultApi
      * @return void
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function usersPut($x_auth_token = null, $x_auth_iv = null)
+    public function usersPut($x_auth_token = null, $user_update = null)
     {
-        list($response) = $this->usersPutWithHttpInfo($x_auth_token, $x_auth_iv);
+        list($response) = $this->usersPutWithHttpInfo($x_auth_token, $user_update);
         return $response;
     }
 
@@ -4106,11 +4100,11 @@ class DefaultApi
      * @return Array of null, HTTP status code, HTTP response headers (array of strings)
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function usersPutWithHttpInfo($x_auth_token = null, $x_auth_iv = null)
+    public function usersPutWithHttpInfo($x_auth_token = null, $user_update = null)
     {
         // parse inputs
         $resourcePath = "/users";
-        $httpBody = '';
+        $httpBody = $user_update;
         $queryParams = array();
         $headerParams = array();
         $formParams = array();
@@ -4124,10 +4118,7 @@ class DefaultApi
         if ($x_auth_token !== null) {
             $headerParams['X-AUTH-TOKEN'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_token);
         }
-        // header params
-        if ($x_auth_iv !== null) {
-            $headerParams['X-AUTH-IV'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_iv);
-        }
+
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
@@ -4150,7 +4141,7 @@ class DefaultApi
                 '/users'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -4234,7 +4225,7 @@ class DefaultApi
                 '/zone_statuses'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -4332,7 +4323,7 @@ class DefaultApi
                 '/zone_statuses/{status_code}'
             );
 
-            return array(null, $statusCode, $httpHeader);
+            return array($response, $statusCode, $httpHeader);
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
