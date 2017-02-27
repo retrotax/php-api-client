@@ -1956,9 +1956,9 @@ class DefaultApi
      * @return \RetroTax\EmployeeResponse
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function employeesEmployeeIdPut($employee_id, $x_auth_token = null, $x_auth_iv = null)
+    public function employeesEmployeeIdPut($employee_id, $x_auth_token = null, $employee_body=null, $x_auth_iv = null)
     {
-        list($response) = $this->employeesEmployeeIdPutWithHttpInfo($employee_id, $x_auth_token, $x_auth_iv);
+        list($response) = $this->employeesEmployeeIdPutWithHttpInfo($employee_id, $x_auth_token, $employee_body, $x_auth_iv);
         return $response;
     }
 
@@ -1973,7 +1973,7 @@ class DefaultApi
      * @return Array of \RetroTax\EmployeeResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function employeesEmployeeIdPutWithHttpInfo($employee_id, $x_auth_token = null, $x_auth_iv = null)
+    public function employeesEmployeeIdPutWithHttpInfo($employee_id, $x_auth_token = null,$employee_body = null, $x_auth_iv = null)
     {
         // verify the required parameter 'employee_id' is set
         if ($employee_id === null) {
@@ -1981,7 +1981,7 @@ class DefaultApi
         }
         // parse inputs
         $resourcePath = "/employees/{employee_id}";
-        $httpBody = '';
+        $httpBody = $employee_body;
         $queryParams = array();
         $headerParams = array();
         $formParams = array();
