@@ -73,7 +73,7 @@ class DefaultApi
     {
         if ($apiClient == null) {
             $apiClient = new ApiClient();
-            $apiClient->getConfig()->setHost('https://api-qa.retrotax-aci.com');
+            $apiClient->getConfig()->setHost('https://api-staging.retrotax-aci.com');
         }
 
         $this->apiClient = $apiClient;
@@ -2150,7 +2150,6 @@ class DefaultApi
             throw $e;
         }
     }
-
     /**
      * Operation employeesEmployeeIdPut
      *
@@ -2162,9 +2161,9 @@ class DefaultApi
      * @return \RetroTax\EmployeeResponse
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function employeesEmployeeIdPut($employee_id, $x_auth_token = null, $employee_body=null, $x_auth_iv = null)
+    public function employeesEmployeeIdPut($employee_id, $employee, $x_auth_token = null, $x_auth_iv = null)
     {
-        list($response) = $this->employeesEmployeeIdPutWithHttpInfo($employee_id, $x_auth_token, $employee_body, $x_auth_iv);
+        list($response) = $this->employeesEmployeeIdPutWithHttpInfo($employee_id, $employee, $x_auth_token, $x_auth_iv);
         return $response;
     }
 
@@ -2179,7 +2178,7 @@ class DefaultApi
      * @return Array of \RetroTax\EmployeeResponse, HTTP status code, HTTP response headers (array of strings)
      * @throws \RetroTax\ApiException on non-2xx response
      */
-    public function employeesEmployeeIdPutWithHttpInfo($employee_id, $x_auth_token = null,$employee_body = null, $x_auth_iv = null)
+    public function employeesEmployeeIdPutWithHttpInfo($employee_id, $employee, $x_auth_token = null, $x_auth_iv = null)
     {
         // verify the required parameter 'employee_id' is set
         if ($employee_id === null) {
@@ -2187,7 +2186,7 @@ class DefaultApi
         }
         // parse inputs
         $resourcePath = "/employees/{employee_id}";
-        $httpBody = $employee_body;
+        $httpBody = '';
         $queryParams = array();
         $headerParams = array();
         $formParams = array();
@@ -2216,7 +2215,12 @@ class DefaultApi
         // default format to json
         $resourcePath = str_replace("{format}", "json", $resourcePath);
 
-        
+        // body params
+        $_tempBody = null;
+        if (isset($employee)) {
+            $_tempBody = $employee;
+        }
+
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
