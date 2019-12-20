@@ -754,6 +754,212 @@ class DefaultApi
         }
     }
 
+
+    /**        
+    * Operation companiesPost      
+     *      
+     *      
+     *      
+     * @param string $x_api_key  (optional)     
+     * @param string $x_auth_token  (optional)      
+     * @param string $x_auth_iv  (optional)     
+     * @return void     
+     * @throws \RetroTax\ApiException on non-2xx response       
+     */     
+    public function companiesPost($company_params, $x_auth_token = null, $x_auth_iv = null, $x_api_key = null)      
+    {       
+        list($response) = $this->companiesPostWithHttpInfo($company_params, $x_auth_token, $x_auth_iv, $x_api_key);     
+        return $response;       
+    }       
+        
+    /**     
+     * Operation companiesPostWithHttpInfo      
+     *      
+     *      
+     *      
+     * @param string $x_api_key  (optional)     
+     * @param string $x_auth_token  (optional)      
+     * @param string $x_auth_iv  (optional)     
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)        
+     * @throws \RetroTax\ApiException on non-2xx response       
+     */     
+    public function companiesPostWithHttpInfo($company_params, $x_auth_token = null, $x_auth_iv = null, $x_api_key = null)      
+    {       
+        // parse inputs     
+        $resourcePath = "/companies";       
+        $httpBody = $company_params;        
+        $queryParams = array();     
+        $headerParams = array();        
+        $formParams = array();      
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));      
+        if (!is_null($_header_accept)) {        
+            $headerParams['Accept'] = $_header_accept;      
+        }       
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array());     
+        
+        // header params        
+        if ($x_api_key !== null) {      
+            $headerParams['X-API-KEY'] = $this->apiClient->getSerializer()->toHeaderValue($x_api_key);      
+        }       
+        // header params        
+        if ($x_auth_token !== null) {       
+            $headerParams['X-AUTH-TOKEN'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_token);        
+        }       
+        // header params        
+        if ($x_auth_iv !== null) {      
+            $headerParams['X-AUTH-IV'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_iv);      
+        }       
+        // default format to json       
+        $resourcePath = str_replace("{format}", "json", $resourcePath);     
+        
+        // body params      
+        $_tempBody = null;      
+        if (isset($company_params)) {       
+            $_tempBody = $company_params;       
+        }       
+                
+        // for model (json/xml)     
+        if (isset($_tempBody)) {        
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present        
+        } elseif (count($formParams) > 0) {     
+            $httpBody = $formParams; // for HTTP post (form)        
+        }       
+        // this endpoint requires API key authentication        
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('x-api-key');       
+        if (strlen($apiKey) !== 0) {        
+            $headerParams['x-api-key'] = $apiKey;       
+        }       
+        // make the API Call        
+        try {       
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(      
+                $resourcePath,      
+                'POST',     
+                $queryParams,       
+                $httpBody,      
+                $headerParams,      
+                null,       
+                '/companies'        
+            );      
+        
+            return array($response, $statusCode, $httpHeader);      
+        } catch (ApiException $e) {     
+            switch ($e->getCode()) {        
+            }       
+        
+            throw $e;       
+        }       
+    }
+
+  /**       
+     * Operation companiesCompanyIdLocationsPost        
+     *      
+     *      
+     *      
+     * @param string $company_id  (required)        
+     * @param string $x_api_key  (optional)     
+     * @param string $x_auth_token  (optional)      
+     * @param string $x_auth_iv  (optional)     
+     * @return void     
+     * @throws \RetroTax\ApiException on non-2xx response       
+     */     
+    public function companiesCompanyIdLocationsPost($location_params, $company_id, $x_auth_token = null, $x_api_key = null, $x_auth_iv = null)      
+    {       
+        list($response) = $this->companiesCompanyIdLocationsPostWithHttpInfo($location_params, $company_id, $x_auth_token, $x_api_key, $x_auth_iv);     
+        return $response;       
+    }       
+        
+    /**     
+     * Operation companiesCompanyIdLocationsPostWithHttpInfo        
+     *      
+     *      
+     *      
+     * @param string $company_id  (required)        
+     * @param string $x_api_key  (optional)     
+     * @param string $x_auth_token  (optional)      
+     * @param string $x_auth_iv  (optional)     
+     * @return Array of null, HTTP status code, HTTP response headers (array of strings)        
+     * @throws \RetroTax\ApiException on non-2xx response       
+     */     
+    public function companiesCompanyIdLocationsPostWithHttpInfo($location_params, $company_id, $x_auth_token = null, $x_api_key = null, $x_auth_iv = null)      
+    {       
+        // verify the required parameter 'company_id' is set        
+        if ($company_id === null) {     
+            throw new \InvalidArgumentException('Missing the required parameter $company_id when calling companiesCompanyIdLocationsPost');     
+        }       
+        // parse inputs     
+        $resourcePath = "/companies/{company_id}/locations";        
+        $httpBody = $location_params;       
+        $queryParams = array();     
+        $headerParams = array();        
+        $formParams = array();      
+        $_header_accept = $this->apiClient->selectHeaderAccept(array('application/json'));      
+        if (!is_null($_header_accept)) {        
+            $headerParams['Accept'] = $_header_accept;      
+        }       
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType(array());     
+        
+        // header params        
+        if ($x_api_key !== null) {      
+            $headerParams['X-API-KEY'] = $this->apiClient->getSerializer()->toHeaderValue($x_api_key);      
+        }       
+        // header params        
+        if ($x_auth_token !== null) {       
+            $headerParams['X-AUTH-TOKEN'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_token);        
+        }       
+        // header params        
+        if ($x_auth_iv !== null) {      
+            $headerParams['X-AUTH-IV'] = $this->apiClient->getSerializer()->toHeaderValue($x_auth_iv);      
+        }       
+        // path params      
+        if ($company_id !== null) {     
+            $resourcePath = str_replace(        
+                "{" . "company_id" . "}",       
+                $this->apiClient->getSerializer()->toPathValue($company_id),        
+                $resourcePath       
+            );      
+        }       
+        // default format to json       
+        $resourcePath = str_replace("{format}", "json", $resourcePath);     
+        
+        // body params      
+        $_tempBody = null;      
+        if (isset($location_params)) {      
+            $_tempBody = $location_params;      
+        }       
+        
+        // for model (json/xml)     
+        if (isset($_tempBody)) {        
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present        
+        } elseif (count($formParams) > 0) {     
+            $httpBody = $formParams; // for HTTP post (form)        
+        }       
+        // this endpoint requires API key authentication        
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('x-api-key');       
+        if (strlen($apiKey) !== 0) {        
+            $headerParams['x-api-key'] = $apiKey;       
+        }       
+        // make the API Call        
+        try {       
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(      
+                $resourcePath,      
+                'POST',     
+                $queryParams,       
+                $httpBody,      
+                $headerParams,      
+                null,       
+                '/companies/{company_id}/locations'     
+            );      
+        
+            return array(null, $statusCode, $httpHeader);       
+        } catch (ApiException $e) {     
+            switch ($e->getCode()) {        
+            }       
+        
+            throw $e;       
+        }       
+    }       
+        
+
     /**
      * Operation companiesCompanyIdLocationsGet
      *
@@ -2237,7 +2443,7 @@ class DefaultApi
         }
         // parse inputs
         $resourcePath = "/employees";
-        $httpBody = '';
+        $httpBody = $employee;
         $queryParams = array();
         $headerParams = array();
         $formParams = array();
